@@ -6,10 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var report = require('./routes/report');
+var register = require('./routes/register');
 var power = require('./routes/power');
 var application = require('./routes/application');
-var place = require('./routes/place');
+var msg = require('./routes/msg');
 var events = require('./routes/events');
 var app = express();
 
@@ -27,10 +27,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // cam and sriram, add routes here
 app.use('/', routes);
-app.use('/report', report);
+app.use('/register', register);
 app.use('/power', power);
 app.use('/application', application);
-app.use('/makingtheworldabetterplace',place);
+app.use('/up',msg);
 app.use('/events',events);
 
 
