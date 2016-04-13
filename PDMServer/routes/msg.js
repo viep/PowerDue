@@ -27,7 +27,7 @@ router.post('/:dueid/:appid', function(req, res, next) {
         });
     });
 
-    client.getmessagesForDueId(dueid, function(messages) {
+    client.getMessagesForDueId(dueid, function(messages) {
         if(messages !== undefined){
             console.log("back here with : "+ JSON.stringify(messages));
             res.send(JSON.stringify(messages));
