@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var register = require('./routes/register');
-var power = require('./routes/power');
-var application = require('./routes/application');
+var publish = require('./routes/publish');
+var subscribe = require('./routes/subscribe');
 var msg = require('./routes/msg');
 var events = require('./routes/events');
 var app = express();
@@ -28,8 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // cam and sriram, add routes here
 app.use('/', routes);
 app.use('/register', register);
-app.use('/power', power);
-app.use('/application', application);
+app.use('/publish', publish);
+app.use('/subscribe', subscribe);
 app.use('/up',msg);
 app.use('/events',events);
 
