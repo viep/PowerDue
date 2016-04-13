@@ -28,8 +28,12 @@ router.post('/:dueid/:appid', function(req, res, next) {
     });
 
     client.getmessagesForDueId(dueid, function(messages) {
-        //console.log("back here with : "+ (messages['message0']));
-        res.send(JSON.stringify([]));
+        if(messages !== undefined){
+            console.log("back here with : "+ JSON.stringify(messages));
+            res.send(JSON.stringify(messages));
+        } else {
+            res.send(JSON.stringify([]));
+        }
     });
     
 });
