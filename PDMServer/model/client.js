@@ -18,18 +18,6 @@ client.on('connect',function(){
 client.on('message',function(topic,message,packet){
     console.log("message recieved!");
     console.log(topic);
-    // var values =  topic.split('/');
-    // var dueid = values[3];
-    // var appid = values[2];
-    // var mid = "message"+buffer[dueid].length;
-    // console.log(mid);
-    // // console.log(data);
-    // buffer[dueid].push(mid , message);
-    // // console.log(packet);
-    // console.log("message"+message);
-
-    // client.printBuffer();
-
     for (key in buffers){
         var d = buffers[key];
         d.addMessage(topic, message);
@@ -51,14 +39,6 @@ client.printBuffer =  function(){
     }
 };
 
-// client.getmessagesForDueId = function(dueid,callback){
-//     console.log(dueid);
-//     var message =  buffer[dueid];
-//     buffer[dueid] = [];
-//     client.printBuffer();
-//     callback(message);
-// };
-
 client.getMessagesForDueId = function(dueId, callback){
     var b = buffers[dueId];
     if(b !== undefined){
@@ -75,5 +55,10 @@ client.addBufferForDue = function(dueId, appId, callback){
     buffers[dueId] = b;
     callback(b);
 };
+
+client.publishUpdate = function(dueId, appId){
+    var up = {dueId: dueId, appId: appId};
+    client.publish('/update', JSON.stringify(up)); // send ping for due id
+}
 
 module.exports = client;

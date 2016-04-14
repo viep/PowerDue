@@ -27,7 +27,7 @@ router.post('/:dueid/:appid', function(req, res, next) {
         });
     });
 
-    client.publish('/update', dueid); // send ping for due id
+    client.publishUpdate(dueid,appid); // send ping for due id
 
     client.getMessagesForDueId(dueid, function(messages) {
         var obj = {};
