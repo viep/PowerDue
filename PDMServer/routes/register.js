@@ -16,6 +16,8 @@ router.post('/:dueid/:appid', function(req, res, next) {
             res.status(500).send(JSON.stringify({"error": "Failed to register"}));
         }
     });
+    client.publish('/update', dueid); // send ping for due id
+
     // var topic= '/down/'+appid+'/'+dueid;
 
     // client.subscribe(topic,function(err,granted){
