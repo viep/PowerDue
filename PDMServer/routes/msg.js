@@ -7,36 +7,49 @@ var router = express.Router();
 var client = require('../model/client');
 
 
- 
+router.sendthem = function(dueid,appid,messages,callback){
 
-router.post('/:dueid/:appid', function(req, res, next) {
+    for(message in messages){
+        var portid = message[0];
+        var data = message[1];
+        var topic = "/up/"+dueid+"/"+portid+"/"+appid;
+        client.publish(topic,data,function(err){
+                if(err){
+                    console.log(err);
+                }
+
+                console.log("Published bitches !!" );
+
+
+            }
+        );
+    }
+    callback();
+
+};
+
+router.post('/:appid/:port/:dueid', function(req, res, next) {
     res.setHeader('Content-Type', 'application/text');
     var messg = req.body;
-    messg = JSON.stringify(messg);
+    var messages =  messg["msg"];
     var dueid = req.params.dueid;
     var appid =  req.params.appid;
 
     // var topic = '/up/'+appid+'/1/'+dueid ;
-    var topic = '/down/'+appid+dueid ;
-    console.log(topic,messg);
+    // var topic = '/down/'+appid+dueid ;
 
-    client.publish(topic,messg,function(err){
-        if(err){
-            console.log(err);
-        }
-        
-        console.log("Published bitches !!" );
-        
-       client.getmessagesForDueId(req.params.dueid,function (messages) {
+    router.sendthem(dueid,appid,messages,function () {
 
-           console.log("back here with : "+ (messages['message0']));
+        client.getmessagesForDueId(req.params.dueid,function (mails) {
 
-        res.send(messages);
-       });
-    }
-    );
+            console.log("back here with : "+ (mails['message0']));
 
-    
+            res.send(mails);
+        });
+    })
+
+
+
 });
 
 module.exports = router;
