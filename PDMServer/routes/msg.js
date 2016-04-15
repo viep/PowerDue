@@ -12,7 +12,7 @@ router.sendthem = function(dueid,appid,messages,callback){
     for(message in messages){
         var portid = message[0];
         var data = message[1];
-        var topic = "/up/"+dueid+"/"+portid+"/"+appid;
+        var topic = "/up/"+appid+"/"+portid+"/"+dueid;
         client.publish(topic,data,function(err){
                 if(err){
                     console.log(err);
