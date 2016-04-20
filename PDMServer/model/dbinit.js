@@ -6,6 +6,7 @@ var fs = require("fs");
 var file = process.env.CLOUD_DIR + "/" + "pdms.db";
 var exists = fs.existsSync(file);
 
+/*
 if(!exists) {
     console.log("Creating DB file.");
     fs.openSync(file, "w");
@@ -35,3 +36,4 @@ db.serialize(function() {
 });
 
 db.close();
+*/

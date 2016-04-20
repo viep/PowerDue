@@ -12,6 +12,8 @@ var exists = fs.existsSync(file);
 
 router.get('/', function(req, res, next) {
 
+    res.status(200).json({});
+/*
     if(!exists) {
         console.log("Creating DB file.");
         fs.openSync(file, "w");
@@ -42,6 +44,7 @@ router.get('/', function(req, res, next) {
     });
 
     db.close();
+    */
 
 });
 
