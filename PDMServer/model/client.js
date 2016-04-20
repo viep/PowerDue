@@ -2,8 +2,10 @@
  * Created by epi on 4/12/16.
  */
 
+var config = require('../config');
+
 var mqtt    = require('mqtt');
-var client  = mqtt.connect('mqtt://localhost');
+var client  = mqtt.connect('mqtt://' + config.MQTT_SERVER);
 var buffer  =  new Array();
 
 var DueBuffer = require('./dueBuffer');
