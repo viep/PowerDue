@@ -32,7 +32,7 @@
  	console.log("validTopic: " + validTopic);
  	if(validTopic){
  		// get port
- 		var port = parts[3];
+ 		var port = parseInt(parts[3]);
  		var msg = [port,message.toString()];
  		console.log("message: " + JSON.stringify(msg));
  		this.messageBuffer.push(msg);
