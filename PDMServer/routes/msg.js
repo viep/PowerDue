@@ -10,15 +10,15 @@ var client = require('../model/client');
 router.sendthem = function(dueid,appid,messages,callback){
 
     for(message in messages){
-        var portid = message[0];
-        var data = message[1];
+        var portid = messages[message][0];
+        var data = messages[message][1];
         var topic = "/up/"+appid+"/"+portid+"/"+dueid;
         client.publish(topic,data,function(err){
                 if(err){
                     console.log(err);
                 }
 
-                console.log("Published bitches !!" );
+                console.log("Erlich Bachman has published his D2F !!:data"+data );
 
 
             }
@@ -28,8 +28,8 @@ router.sendthem = function(dueid,appid,messages,callback){
 
 };
 
-router.post('/:appid/:port/:dueid', function(req, res, next) {
-    res.setHeader('Content-Type', 'application/text');
+router.post('/:appid/:dueid', function(req, res, next) {
+    res.setHeader('Content-Type', 'application/json');
     var messg = req.body;
     var messages =  messg["msg"];
     var dueid = req.params.dueid;

@@ -10,7 +10,7 @@ var register = require('./routes/register');
 var publish = require('./routes/publish');
 var subscribe = require('./routes/subscribe');
 var msg = require('./routes/msg');
-var events = require('./routes/events');
+var echo = require('./routes/echo');
 var app = express();
 
 // view engine setup
@@ -31,7 +31,7 @@ app.use('/register', register);
 app.use('/publish', publish);
 app.use('/subscribe', subscribe);
 app.use('/up',msg);
-app.use('/events',events);
+app.use('/echo',echo);
 
 
 // catch 404 and forward to error handler

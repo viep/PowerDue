@@ -4,11 +4,11 @@ var router = express.Router();
 var client = require('../model/client');
 
 
-router.post('/:appid/:portid/:dueid', function(req, res, next) {
+router.post('/:appid/:dueid', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
     var dueid =  req.params.dueid;
     var appid =  req.params.appid;
-    var portid =  req.params.portid;
+   // var portid =  req.params.portid;
     // var topic= '/down/'+appid+'/'+portid+"/"+dueid;
     
     client.registerDueunderApp(appid,dueid,function(){
